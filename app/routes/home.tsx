@@ -112,7 +112,7 @@ export default function Home() {
           {t("motocross.newSetup", "New Setup")}
         </Link>
         <Link to="/history" className="font-medium">
-          {t("motocross.history", "History")}
+          {t("motocross.history.title", "History")}
         </Link>
       </div>
 
