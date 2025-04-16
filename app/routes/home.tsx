@@ -32,15 +32,15 @@ export default function Home() {
 
   const [activeTags, setActiveTags] = useState<string[]>([]);
   const availableTags = [
-    "Front deflects",
-    "Rear kicks",
-    "Too soft",
-    "Too harsh",
-    "Perfect",
-    "Bottoms out",
-    "Unpredictable",
-    "Stable",
-    "Balanced",
+    t("motocross.tags.frontDeflects", "Front deflects"),
+    t("motocross.tags.rearKicks", "Rear kicks"),
+    t("motocross.tags.tooSoft", "Too soft"),
+    t("motocross.tags.tooHarsh", "Too harsh"),
+    t("motocross.tags.perfect", "Perfect"),
+    t("motocross.tags.bottomsOut", "Bottoms out"),
+    t("motocross.tags.unpredictable", "Unpredictable"),
+    t("motocross.tags.stable", "Stable"),
+    t("motocross.tags.balanced", "Balanced"),
   ];
 
   const handleInputChange = (

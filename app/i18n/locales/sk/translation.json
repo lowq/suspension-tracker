@@ -36,7 +36,18 @@
     "rearSuspension": "Zadné zavesenie",
     "feelFeedback": "Pocit a spätná väzba",
     "riderNotes": "Poznámky jazdca",
-    "behaviorTags": "Značky správania",
-    "saveSetup": "Uložiť nastavenie"
+    "behaviorTags": "Značky správania zavesenia",
+    "saveSetup": "Uložiť nastavenie",
+    "tags": {
+      "frontDeflects": "Predné sa odkláňa",
+      "rearKicks": "Zadné kopie",
+      "tooSoft": "Príliš mäkké",
+      "tooHarsh": "Príliš tvrdé",
+      "perfect": "Perfektné",
+      "bottomsOut": "Naráža na doraz",
+      "unpredictable": "Neočakávané správanie",
+      "stable": "Stabilné",
+      "balanced": "Vyvážené"
+    }
   }
 }
