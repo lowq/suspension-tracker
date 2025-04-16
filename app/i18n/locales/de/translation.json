@@ -1,0 +1,42 @@
+{
+  "common": {
+    "welcome": "Willkommen",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "home": "Startseite",
+    "loading": "Wird geladen...",
+    "error": "Fehler",
+    "notFound": "Seite nicht gefunden"
+  },
+  "buttons": {
+    "submit": "Absenden",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "delete": "Löschen"
+  },
+  "languageSwitcher": {
+    "en": "Englisch",
+    "de": "Deutsch",
+    "sk": "Slowakisch"
+  },
+  "motocross": {
+    "title": "Motocross Fahrwerkseinstellung",
+    "newSetup": "Neue Einstellung",
+    "history": "Verlauf",
+    "trackInfo": "Streckeninformationen",
+    "trackName": "Streckenname",
+    "conditions": "Streckenbedingungen",
+    "loamy": "Lehm",
+    "hardPack": "Hart",
+    "sandy": "Sand",
+    "muddy": "Matsch",
+    "mixed": "Gemischt",
+    "weather": "Wetter (optional)",
+    "frontSuspension": "Vorderradaufhängung",
+    "rearSuspension": "Hinterradaufhängung",
+    "feelFeedback": "Gefühl & Feedback",
+    "riderNotes": "Fahrer-Notizen",
+    "behaviorTags": "Verhaltenskennzeichen",
+    "saveSetup": "Einstellung speichern"
+  }
+}

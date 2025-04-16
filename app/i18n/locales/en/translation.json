@@ -1,0 +1,42 @@
+{
+  "common": {
+    "welcome": "Welcome",
+    "about": "About",
+    "contact": "Contact",
+    "home": "Home",
+    "loading": "Loading...",
+    "error": "Error",
+    "notFound": "Page not found"
+  },
+  "buttons": {
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete"
+  },
+  "languageSwitcher": {
+    "en": "English",
+    "de": "German",
+    "sk": "Slovak"
+  },
+  "motocross": {
+    "title": "Motocross Suspension Setup",
+    "newSetup": "New Setup",
+    "history": "History",
+    "trackInfo": "Track Information",
+    "trackName": "Track Name",
+    "conditions": "Conditions",
+    "loamy": "Loamy",
+    "hardPack": "Hard-Pack",
+    "sandy": "Sandy",
+    "muddy": "Muddy",
+    "mixed": "Mixed",
+    "weather": "Weather (optional)",
+    "frontSuspension": "Front Suspension",
+    "rearSuspension": "Rear Suspension",
+    "feelFeedback": "Feel & Feedback",
+    "riderNotes": "Rider Notes",
+    "behaviorTags": "Behavior Tags",
+    "saveSetup": "Save Setup"
+  }
+}

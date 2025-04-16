@@ -6,9 +6,11 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-
+import { useEffect } from "react";
 import type { Route } from "./+types/root";
 import "./app.css";
+import "./i18n/i18n";
+import LanguageSwitcher from "./components/LanguageSwitcher";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -24,6 +26,15 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem("userLanguage");
+    if (savedLanguage) {
+      import("i18next").then((i18next) => {
+        i18next.default.changeLanguage(savedLanguage);
+      });
+    }
+  }, []);
+
   return (
     <html lang="en">
       <head>
@@ -33,6 +44,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <div className="p-4 flex justify-end">
+          <LanguageSwitcher />
+        </div>
         {children}
         <ScrollRestoration />
         <Scripts />

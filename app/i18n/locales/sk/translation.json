@@ -1,0 +1,42 @@
+{
+  "common": {
+    "welcome": "Vitajte",
+    "about": "O nás",
+    "contact": "Kontakt",
+    "home": "Domov",
+    "loading": "Načítava sa...",
+    "error": "Chyba",
+    "notFound": "Stránka nebola nájdená"
+  },
+  "buttons": {
+    "submit": "Odoslať",
+    "cancel": "Zrušiť",
+    "save": "Uložiť",
+    "delete": "Vymazať"
+  },
+  "languageSwitcher": {
+    "en": "Angličtina",
+    "de": "Nemčina",
+    "sk": "Slovenčina"
+  },
+  "motocross": {
+    "title": "Nastavenie Zavesenia Motokrosu",
+    "newSetup": "Nové nastavenie",
+    "history": "História",
+    "trackInfo": "Informácie o trati",
+    "trackName": "Názov trate",
+    "conditions": "Podmienky",
+    "loamy": "Hlinitá",
+    "hardPack": "Tvrdá",
+    "sandy": "Piesočná",
+    "muddy": "Blatistá",
+    "mixed": "Zmiešaná",
+    "weather": "Počasie (voliteľné)",
+    "frontSuspension": "Predné zavesenie",
+    "rearSuspension": "Zadné zavesenie",
+    "feelFeedback": "Pocit a spätná väzba",
+    "riderNotes": "Poznámky jazdca",
+    "behaviorTags": "Značky správania",
+    "saveSetup": "Uložiť nastavenie"
+  }
+}

@@ -3,10 +3,17 @@ import { Link } from "react-router";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { v4 as uuidv4 } from "uuid";
 import type { SuspensionSetup } from "../types";
+import { useLocalization } from "../hooks/useLocalization";
 
 export default function Home() {
-  const [setups, setSetups] = useLocalStorage<SuspensionSetup[]>("suspension-setups", []);
-  const [formData, setFormData] = useState<Omit<SuspensionSetup, 'id' | 'date'>>({
+  const { t } = useLocalization();
+  const [setups, setSetups] = useLocalStorage<SuspensionSetup[]>(
+    "suspension-setups",
+    []
+  );
+  const [formData, setFormData] = useState<
+    Omit<SuspensionSetup, "id" | "date">
+  >({
     trackName: "",
     conditions: "Loamy",
     weather: "",
@@ -20,52 +27,58 @@ export default function Home() {
     frontTirePressure: 0.9,
     rearTirePressure: 0.83,
     notes: "",
-    tags: []
+    tags: [],
   });
 
   const [activeTags, setActiveTags] = useState<string[]>([]);
   const availableTags = [
-    "Front deflects", 
-    "Rear kicks", 
-    "Too soft", 
-    "Too harsh", 
+    "Front deflects",
+    "Rear kicks",
+    "Too soft",
+    "Too harsh",
     "Perfect",
     "Bottoms out",
     "Unpredictable",
     "Stable",
-    "Balanced"
+    "Balanced",
   ];
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: name.includes('Sag') || name.includes('Compression') || name.includes('Rebound') || name.includes('Pressure')
-        ? parseFloat(value)
-        : value
+      [name]:
+        name.includes("Sag") ||
+        name.includes("Compression") ||
+        name.includes("Rebound") ||
+        name.includes("Pressure")
+          ? parseFloat(value)
+          : value,
     }));
   };
 
   const toggleTag = (tag: string) => {
-    setActiveTags(prev => 
-      prev.includes(tag) 
-        ? prev.filter(t => t !== tag) 
-        : [...prev, tag]
+    setActiveTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
     );
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const newSetup: SuspensionSetup = {
       id: uuidv4(),
       date: new Date().toISOString(),
       ...formData,
-      tags: activeTags
+      tags: activeTags,
     };
-    
+
     setSetups([newSetup, ...setups]);
-    
+
     // Reset form
     setFormData({
       trackName: "",
@@ -81,31 +94,42 @@ export default function Home() {
       frontTirePressure: 0.9,
       rearTirePressure: 0.83,
       notes: "",
-      tags: []
+      tags: [],
     });
     setActiveTags([]);
-    
+
     alert("Setup saved successfully!");
   };
 
   return (
     <div className="container mx-auto px-4 py-6 max-w-md">
-      <h1 className="text-2xl font-bold mb-6">Motocross Suspension Setup</h1>
-      
+      <h1 className="text-2xl font-bold mb-6">
+        {t("motocross.title", "Motocross Suspension Setup")}
+      </h1>
+
       <div className="flex justify-between mb-4">
-        <Link to="/" className="font-medium">New Setup</Link>
-        <Link to="/history" className="font-medium">History</Link>
+        <Link to="/" className="font-medium">
+          {t("motocross.newSetup", "New Setup")}
+        </Link>
+        <Link to="/history" className="font-medium">
+          {t("motocross.history", "History")}
+        </Link>
       </div>
-      
+
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Track Entry Section */}
         <section className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-          <h2 className="text-lg font-semibold mb-3">Track Information</h2>
-          
+          <h2 className="text-lg font-semibold mb-3">
+            {t("motocross.trackInfo", "Track Information")}
+          </h2>
+
           <div className="space-y-3">
             <div>
-              <label htmlFor="trackName" className="block text-sm font-medium mb-1">
-                Track Name
+              <label
+                htmlFor="trackName"
+                className="block text-sm font-medium mb-1"
+              >
+                {t("motocross.trackName", "Track Name")}
               </label>
               <input
                 type="text"
@@ -117,10 +141,13 @@ export default function Home() {
                 required
               />
             </div>
-            
+
             <div>
-              <label htmlFor="conditions" className="block text-sm font-medium mb-1">
-                Conditions
+              <label
+                htmlFor="conditions"
+                className="block text-sm font-medium mb-1"
+              >
+                {t("motocross.conditions", "Conditions")}
               </label>
               <select
                 id="conditions"
@@ -129,17 +156,22 @@ export default function Home() {
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md"
               >
-                <option value="Loamy">Loamy</option>
-                <option value="Hard-Pack">Hard-Pack</option>
-                <option value="Sandy">Sandy</option>
-                <option value="Muddy">Muddy</option>
-                <option value="Mixed">Mixed</option>
+                <option value="Loamy">{t("motocross.loamy", "Loamy")}</option>
+                <option value="Hard-Pack">
+                  {t("motocross.hardPack", "Hard-Pack")}
+                </option>
+                <option value="Sandy">{t("motocross.sandy", "Sandy")}</option>
+                <option value="Muddy">{t("motocross.muddy", "Muddy")}</option>
+                <option value="Mixed">{t("motocross.mixed", "Mixed")}</option>
               </select>
             </div>
-            
+
             <div>
-              <label htmlFor="weather" className="block text-sm font-medium mb-1">
-                Weather (optional)
+              <label
+                htmlFor="weather"
+                className="block text-sm font-medium mb-1"
+              >
+                {t("motocross.weather", "Weather (optional)")}
               </label>
               <input
                 type="text"
@@ -152,14 +184,19 @@ export default function Home() {
             </div>
           </div>
         </section>
-        
+
         {/* Front Suspension Section */}
         <section className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-          <h2 className="text-lg font-semibold mb-3">Front Suspension</h2>
-          
+          <h2 className="text-lg font-semibold mb-3">
+            {t("motocross.frontSuspension", "Front Suspension")}
+          </h2>
+
           <div className="space-y-3">
             <div>
-              <label htmlFor="frontCompression" className="block text-sm font-medium mb-1">
+              <label
+                htmlFor="frontCompression"
+                className="block text-sm font-medium mb-1"
+              >
                 Compression (clicks out)
               </label>
               <input
@@ -174,9 +211,12 @@ export default function Home() {
                 required
               />
             </div>
-            
+
             <div>
-              <label htmlFor="frontRebound" className="block text-sm font-medium mb-1">
+              <label
+                htmlFor="frontRebound"
+                className="block text-sm font-medium mb-1"
+              >
                 Rebound (clicks out)
               </label>
               <input
@@ -191,9 +231,12 @@ export default function Home() {
                 required
               />
             </div>
-            
+
             <div>
-              <label htmlFor="frontSag" className="block text-sm font-medium mb-1">
+              <label
+                htmlFor="frontSag"
+                className="block text-sm font-medium mb-1"
+              >
                 Sag (mm)
               </label>
               <input
@@ -210,7 +253,10 @@ export default function Home() {
             </div>
 
             <div>
-              <label htmlFor="frontTirePressure" className="block text-sm font-medium mb-1">
+              <label
+                htmlFor="frontTirePressure"
+                className="block text-sm font-medium mb-1"
+              >
                 Tire Pressure (bar)
               </label>
               <input
@@ -227,14 +273,19 @@ export default function Home() {
             </div>
           </div>
         </section>
-        
+
         {/* Rear Suspension Section */}
         <section className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-          <h2 className="text-lg font-semibold mb-3">Rear Suspension</h2>
-          
+          <h2 className="text-lg font-semibold mb-3">
+            {t("motocross.rearSuspension", "Rear Suspension")}
+          </h2>
+
           <div className="space-y-3">
             <div>
-              <label htmlFor="rearHighSpeedCompression" className="block text-sm font-medium mb-1">
+              <label
+                htmlFor="rearHighSpeedCompression"
+                className="block text-sm font-medium mb-1"
+              >
                 High-Speed Compression (turns out)
               </label>
               <input
@@ -249,9 +300,12 @@ export default function Home() {
                 required
               />
             </div>
-            
+
             <div>
-              <label htmlFor="rearLowSpeedCompression" className="block text-sm font-medium mb-1">
+              <label
+                htmlFor="rearLowSpeedCompression"
+                className="block text-sm font-medium mb-1"
+              >
                 Low-Speed Compression (clicks out)
               </label>
               <input
@@ -266,9 +320,12 @@ export default function Home() {
                 required
               />
             </div>
-            
+
             <div>
-              <label htmlFor="rearRebound" className="block text-sm font-medium mb-1">
+              <label
+                htmlFor="rearRebound"
+                className="block text-sm font-medium mb-1"
+              >
                 Rebound (clicks out)
               </label>
               <input
@@ -283,9 +340,12 @@ export default function Home() {
                 required
               />
             </div>
-            
+
             <div>
-              <label htmlFor="rearSag" className="block text-sm font-medium mb-1">
+              <label
+                htmlFor="rearSag"
+                className="block text-sm font-medium mb-1"
+              >
                 Sag (mm)
               </label>
               <input
@@ -302,7 +362,10 @@ export default function Home() {
             </div>
 
             <div>
-              <label htmlFor="rearTirePressure" className="block text-sm font-medium mb-1">
+              <label
+                htmlFor="rearTirePressure"
+                className="block text-sm font-medium mb-1"
+              >
                 Tire Pressure (bar)
               </label>
               <input
@@ -319,15 +382,17 @@ export default function Home() {
             </div>
           </div>
         </section>
-        
+
         {/* Feel/Feedback Section */}
         <section className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-          <h2 className="text-lg font-semibold mb-3">Feel & Feedback</h2>
-          
+          <h2 className="text-lg font-semibold mb-3">
+            {t("motocross.feelFeedback", "Feel & Feedback")}
+          </h2>
+
           <div className="space-y-3">
             <div>
               <label htmlFor="notes" className="block text-sm font-medium mb-1">
-                Rider Notes
+                {t("motocross.riderNotes", "Rider Notes")}
               </label>
               <textarea
                 id="notes"
@@ -338,21 +403,21 @@ export default function Home() {
                 rows={4}
               />
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium mb-2">
-                Behavior Tags
+                {t("motocross.behaviorTags", "Behavior Tags")}
               </label>
               <div className="flex flex-wrap gap-2">
-                {availableTags.map(tag => (
+                {availableTags.map((tag) => (
                   <button
                     key={tag}
                     type="button"
                     onClick={() => toggleTag(tag)}
                     className={`px-3 py-1 rounded-full text-sm ${
                       activeTags.includes(tag)
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-gray-200 dark:bg-gray-700'
+                        ? "bg-blue-600 text-white"
+                        : "bg-gray-200 dark:bg-gray-700"
                     }`}
                   >
                     {tag}
@@ -362,12 +427,12 @@ export default function Home() {
             </div>
           </div>
         </section>
-        
+
         <button
           type="submit"
           className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md"
         >
-          Save Setup
+          {t("motocross.saveSetup", "Save Setup")}
         </button>
       </form>
     </div>
